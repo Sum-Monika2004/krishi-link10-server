@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const admin = require("firebase-admin");
-const serviceAccount = require("./serviceKey.json");
+// const serviceAccount = require("./serviceKey.json");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 const app = express();
@@ -10,6 +10,12 @@ const port = process.env.PORT || 3000;
 // middleware
 app.use(cors());
 app.use(express.json());
+
+const decoded = Buffer.from(
+  process.env.FIREBASE_SERVICE_KEY,
+  "base64"
+).toString("utf8");
+const serviceAccount = JSON.parse(decoded);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
