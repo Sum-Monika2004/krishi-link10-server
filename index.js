@@ -97,10 +97,6 @@ async function run() {
       });
     });
 
-    //PUT
-    //updateOne
-    //updateMany
-
     // interests
 
     app.post("/interests/:id", async (req, res) => {
